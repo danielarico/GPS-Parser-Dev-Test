@@ -26,11 +26,16 @@ def parserGPS(json_payload):
 # Function to extract json values 
 #-----------------------------------------
 def extractValues(json_payload):
-  payload = json.loads(json_payload)
-  # Verificar si existen los keys
-  data = payload["data"]
-  device = payload["device"]
-  return data, device
+    payload = json.loads(json_payload)
+    if "data" and "device" in payload.keys():
+        data = str(payload["data"])
+        device = str(payload["device"])
+        if len(data) != 24:
+            raise ValueError("Error in json argument: \"data\" length incorrect")
+        else:
+            return data, device
+    else:
+        raise KeyError("Error in json argument: keys are not the expected")
 
 
 #-----------------------------------------

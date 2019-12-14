@@ -1,4 +1,5 @@
 import json
+import struct
 
 def parserGPS(json_payload):
     output = {}
@@ -39,13 +40,13 @@ def extractValues(json_payload):
 # Functions to decode variables
 #-----------------------------------------
 def decodeLat(lat_hex):
-    lat = int(lat_hex, 16)
-    return lat
+    # Hex to float latitude conversion
+    return lat_hex
 
 
 def decodeLon(lon_hex):
-    lon = int(lon_hex, 16)
-    return lon
+    # Hex to float longitude conversion
+    return lon_hex
 
 
 def decodeOthers(others_hex):

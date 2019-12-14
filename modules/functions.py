@@ -41,12 +41,14 @@ def extractValues(json_payload):
 #-----------------------------------------
 def decodeLat(lat_hex):
     # Hex to float latitude conversion
-    return lat_hex
+    lat = int(lat_hex, 16)
+    return lat
 
 
 def decodeLon(lon_hex):
     # Hex to float longitude conversion
-    return lon_hex
+    lon = int(lon_hex, 16)
+    return lon
 
 
 def decodeOthers(others_hex):

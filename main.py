@@ -1,5 +1,4 @@
 import sys
-import json
 from modules.functions import parserGPS
 
 def main(json_route):

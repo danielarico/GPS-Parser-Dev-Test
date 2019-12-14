@@ -14,22 +14,13 @@ def parser(json_payload):
   others = decodeOthers(data)
   adc = decodeAdc(data)
 
+  """
   print(lat)
   print(lon)
   print(others)
   print(adc)
-
+  """
   return 
-
-#-----------------------------------------
-# Auxiliar functions
-#-----------------------------------------
-def split(word): 
-  return [char for char in word]
-
-def listToString(to_string):
-  lat_str = ""
-  return (lat_str.join(to_string))
 
 #-----------------------------------------
 # Functions to extract bytes 
@@ -72,11 +63,31 @@ def decodeLon(data):
 
 def decodeOthers(data):
   others_str = extractOthers(data)
+  print(others_str)
+  others_bin = strToBin(others_str)
+  print(others_bin)
+  others = split(others_bin)
   return others_str
 
 def decodeAdc(data):
   adc_str = extractAdc(data)
   return adc_str
+
+#-----------------------------------------
+# Auxiliar functions
+#-----------------------------------------
+def split(word): 
+  return [char for char in word]
+
+def listToString(to_string):
+  lat_str = ""
+  return (lat_str.join(to_string))
+
+def strToBin(my_string):
+  scale = 16
+  num_of_bits = 8
+  binary_str = bin(int(my_string, scale))[2:].zfill(num_of_bits)
+  return binary_str
 
 #-----------------------------------------
 # Function call

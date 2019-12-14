@@ -4,7 +4,9 @@ from modules.functions import parserGPS
 def main():
     with open(json_route, 'r') as json_data:
         json_payload = json_data.read()
-        parserGPS(json_payload)
+    variables = parserGPS(json_payload)
+    print("\nFinal dictionary:\n")
+    print(variables)
 
 
 if __name__ == "__main__":

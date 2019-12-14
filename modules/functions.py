@@ -3,15 +3,10 @@ import json
 def parserGPS(json_payload):
     output = {}
     data, device = extractValues(json_payload)
-    print("Data: " + data)
 
     lat_hex = data[0:8]
     lon_hex = data[8:16]
     others_hex = data[16:24]
-
-    print("part1: " + lat_hex)
-    print("part2: " + lon_hex)
-    print("part3: " + others_hex)
 
     output["device"] = device
     output["latitude"] = decodeLat(lat_hex)
@@ -27,7 +22,9 @@ def parserGPS(json_payload):
 #-----------------------------------------
 def extractValues(json_payload):
     payload = json.loads(json_payload)
-    if "data" and "device" in payload.keys():
+    k = payload.keys()
+
+    if "data" in k and "device" in k:
         data = str(payload["data"])
         device = str(payload["device"])
         if len(data) != 24:
@@ -56,10 +53,6 @@ def decodeOthers(others_hex):
     other_vars = others_hex[0:2]
     adc1 = others_hex[2:5]
     adc0 = others_hex[5:9]
-    
-    print("other vars: " + other_vars)
-    print("adc1: " + adc1)
-    print("adc0: " + adc0)
 
     other_vars_bin = bin(int(other_vars, 16))[2:].zfill(8)
     others["periodicity"] = int(other_vars_bin[0])
@@ -68,7 +61,4 @@ def decodeOthers(others_hex):
     others["digital_input"] = int(other_vars_bin[7])
     others["temperatureNTC"] = (int(adc0, 16) - 2340) / 58.5
 
-    print("other_vars_bin: " + other_vars_bin)
-    print("\nOthers dictionary:\n")
-    print(others)
     return others

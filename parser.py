@@ -8,13 +8,16 @@ def parser(json_payload):
   print(data_str)
 
   data = split(data_str)
-  #print(data)
-  #print(len(data))
 
   lat_str = extractLat(data)
   lon_str = extractLon(data)
+  others_str = extractOthers(data)
+  adc_str = extractAdc(data)
+
   print(lat_str)
   print(lon_str)
+  print(others_str)
+  print(adc_str)
 
   return 
 
@@ -33,14 +36,22 @@ def listToString(to_string):
 def extractLat(data):
   lat = data[0:8]
   lat = listToString(lat)
-  #falta convertir a numeros
   return lat
 
 def extractLon(data):
   lon = data[8:16]
   lon = listToString(lon)
-  #falta convertir a numeros
   return lon
+
+def extractOthers(data):
+  others = data[16:18]
+  others = listToString(others)
+  return others
+
+def extractAdc(data):
+  adc = data[18:24]
+  adc = listToString(adc)
+  return adc
 
 
 parser(json_payload)

@@ -1,5 +1,4 @@
 import json
-import struct
 
 def parserGPS(json_payload):
     output = {}
